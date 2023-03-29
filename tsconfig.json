@@ -1,3 +1,15 @@
 {
-  "extends": "astro/tsconfigs/strict"
+  // inherit from recommended template
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    // following is for typescript <= 4.9, but should
+    // be verbatimModuleSyntax set to true for >= 5.0
+    "importsNotUsedAsValues": "error",
+    "paths": {
+      // import aliases for convenience
+      "@components/*": ["src/components/*"],
+      "@layouts/*": ["src/layouts/*"],
+      "@assets/*": ["src/assets/*"],
+    }
+  }
 }
