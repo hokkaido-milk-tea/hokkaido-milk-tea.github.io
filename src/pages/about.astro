@@ -1,9 +1,12 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Layout from '../layouts/Layout.astro';
+
+import { Content as About } from '../components/about.md';
 ---
 
-<BaseLayout title="About">
-  <div class="prose">
-    <p>Hello world! Here's some info about me.</p>
-  </div>
-</BaseLayout>
+<Layout title="About | hokkaido-milk-tea">
+	<main class="prose prose-bubblegum">
+		<h1 class="border-l-8 pl-4 py-2 border-l-lime-300">About</h1>
+		<About />
+	</main>
+</Layout>

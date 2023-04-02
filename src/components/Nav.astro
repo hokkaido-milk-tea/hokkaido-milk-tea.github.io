@@ -1,0 +1,69 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+---
+
+<Fragment>
+  <nav class="hidden md:inline">
+    <div class="flex flex-row gap-4">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32"><g fill="none"><path fill="#83CBFF" d="M7.2 11L7 9l.2-.25h17.6L25 9l-.2 2l-.3.25h-17L7.2 11Z"/><path fill="#8D65C5" d="M17 2v9l-1 1l-1-1V2h2Z"/><path fill="#AEDDFF" d="M6 8a1 1 0 0 1 1-1h18a1 1 0 1 1 0 2H7a1 1 0 0 1-1-1Z"/><path fill="#BCA4EB" d="M17 7v2h-2V7h2Z"/><path fill="#F3AD61" d="M7.2 11h17.6L23 29c-.097.605-.5 1-1 1H10c-.5 0-.924-.437-1-1L7.2 11Z"/><path fill="#8C5543" d="M13.35 25.62a1.31 1.31 0 1 1 0-2.62a1.31 1.31 0 0 1 0 2.62Zm5.3 0a1.31 1.31 0 1 1 0-2.62a1.31 1.31 0 0 1 0 2.62Zm3.87 1.99a1.31 1.31 0 1 1-2.62 0a1.31 1.31 0 0 1 2.62 0Zm-6.26 1.31a1.31 1.31 0 1 1 0-2.62a1.31 1.31 0 0 1 0 2.62Zm-3.64-1.31a1.31 1.31 0 1 1-2.62 0a1.31 1.31 0 0 1 2.62 0Z"/><path fill="#FFF3D7" d="m19.44 26.92l1.13-13.01a1 1 0 0 1 .99-.91c.58 0 1.04.5.99 1.08l-1.13 13.01c-.04.52-.47.91-.99.91c-.58 0-1.04-.5-.99-1.08Z"/></g></svg>
+      <section class="text-text-bold">
+        <ul class="unset flex gap-4 [&>li]:p-0">
+          <li><HeaderLink href="/">Home</HeaderLink></li>
+          <li><HeaderLink href="/about">About</HeaderLink></li>
+          <li><HeaderLink href="/blog">Blog</HeaderLink></li>
+          <li><HeaderLink href="/tags">Tags</HeaderLink></li>
+        </ul>
+      </section>
+    </div>
+  </nav>
+  <nav class="md:hidden">
+    <div class="flex flex-row gap-4">
+      <button id="mobile-menu-open">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M1 2.75A.75.75 0 0 1 1.75 2h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 2.75Zm0 5A.75.75 0 0 1 1.75 7h12.5a.75.75 0 0 1 0 1.5H1.75A.75.75 0 0 1 1 7.75ZM1.75 12h12.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Z"></path></svg>
+      </button>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 32 32"><g fill="none"><path fill="#83CBFF" d="M7.2 11L7 9l.2-.25h17.6L25 9l-.2 2l-.3.25h-17L7.2 11Z"/><path fill="#8D65C5" d="M17 2v9l-1 1l-1-1V2h2Z"/><path fill="#AEDDFF" d="M6 8a1 1 0 0 1 1-1h18a1 1 0 1 1 0 2H7a1 1 0 0 1-1-1Z"/><path fill="#BCA4EB" d="M17 7v2h-2V7h2Z"/><path fill="#F3AD61" d="M7.2 11h17.6L23 29c-.097.605-.5 1-1 1H10c-.5 0-.924-.437-1-1L7.2 11Z"/><path fill="#8C5543" d="M13.35 25.62a1.31 1.31 0 1 1 0-2.62a1.31 1.31 0 0 1 0 2.62Zm5.3 0a1.31 1.31 0 1 1 0-2.62a1.31 1.31 0 0 1 0 2.62Zm3.87 1.99a1.31 1.31 0 1 1-2.62 0a1.31 1.31 0 0 1 2.62 0Zm-6.26 1.31a1.31 1.31 0 1 1 0-2.62a1.31 1.31 0 0 1 0 2.62Zm-3.64-1.31a1.31 1.31 0 1 1-2.62 0a1.31 1.31 0 0 1 2.62 0Z"/><path fill="#FFF3D7" d="m19.44 26.92l1.13-13.01a1 1 0 0 1 .99-.91c.58 0 1.04.5.99 1.08l-1.13 13.01c-.04.52-.47.91-.99.91c-.58 0-1.04-.5-.99-1.08Z"/></g></svg>
+    </div>
+    <section
+      id="mobile-menu"
+      class="hide-menu fixed top-0 left-0 z-10 w-full h-full transition-transform bg-black/75 border-primary-blue"
+    >
+      <div class="bg-bg-body w-[75%] h-full drop-shadow-2xl">
+        <button id="mobile-menu-close" class="px-6 h-[5rem] text-lg xml-[1px]">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M5.72 5.72a.75.75 0 0 1 1.06 0L12 10.94l5.22-5.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L13.06 12l5.22 5.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L12 13.06l-5.22 5.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L10.94 12 5.72 6.78a.75.75 0 0 1 0-1.06Z"></path></svg>
+        </button>
+        <ul class="unset flex flex-col text-text-bold gap-4 [&>li]:p-0 px-6">
+          <li><HeaderLink href="/">Home</HeaderLink></li>
+          <li><HeaderLink href="/about">About</HeaderLink></li>
+          <li><HeaderLink href="/blog">Blog</HeaderLink></li>
+          <li><HeaderLink href="/tags">Tags</HeaderLink></li>
+        </ul>
+      </div>
+    </section>
+  </nav>
+</Fragment>
+
+<script>
+  // @ts-nocheck
+  document.querySelector("#mobile-menu-open").addEventListener("click", () => {
+    const menuElem = document.querySelector("#mobile-menu");
+    menuElem.classList.remove("hide-menu");
+    menuElem.classList.add("show-menu");
+    document.body.style.overflow = "hidden";
+  });
+
+  document.querySelector("#mobile-menu-close").addEventListener("click", () => {
+    const menuElem = document.querySelector("#mobile-menu");
+    menuElem.classList.remove("show-menu");
+    menuElem.classList.add("hide-menu");
+    document.body.style.overflow = "auto";
+  });
+</script>
+
+<style>
+  .hide-menu {
+    transform: translateX(-100%);
+  }
+  .show-menu {
+    transform: translateX(0%);
+  }
+</style>

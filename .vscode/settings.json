@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "*.mdoc": "markdown",
+        "*.css": "tailwindcss",
+    },
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow.json": "file:///c%3A/Users/datti/Documents/Astro/fumbling-filament/.github/workflows/deploy.yml"
+    }
+}

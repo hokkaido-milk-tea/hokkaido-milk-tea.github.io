@@ -1,0 +1,49 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from "astro:content";
+const blogEntries = await getCollection('blog');
+
+const sortedPosts = blogEntries
+  .filter((p) => p.data.draft !== true)
+  .sort(
+    (a, b) =>
+      new Date(b.data.date).valueOf() -
+      new Date(a.data.date).valueOf()
+  );
+---
+
+<Layout title="Blog | hokkaido-milk-tea">
+	<main>
+        <div class="prose prose-bubblegum">
+            <h1 class="border-l-8 pl-4 py-2 border-l-lime-300">Blog</h1>
+        </div>
+        <div class="mt-8">
+            <ul class="pl-0">
+                {sortedPosts.map(post => {
+                    const formattedDate = new Date(
+                        post.data.date
+                    ).toLocaleDateString("en-us", {
+                        timeZone: 'UTC',
+                        year: "numeric",
+                        month: "short",
+                        day: "numeric",
+                    });
+                    return (
+                        <li class="flex flex-col justify-between md:flex-row md:gap-4">
+                            <div>
+                                <a class="no-underline" href={`/blog/${post.slug}`}>
+                                    <span>{post.data.title}</span>
+                                </a>
+                            </div>
+                            <div class="text-text-muted text-sm italic pt-1">
+                                <time datetime={post.data.date.toString()}>
+                                    {formattedDate}
+                                </time>
+                            </div>
+                        </li>
+                    );
+                })}
+            </ul>
+        </div>
+	</main>
+</Layout>

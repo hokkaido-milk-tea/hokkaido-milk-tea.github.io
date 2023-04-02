@@ -1,5 +1,5 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import Layout from '../../layouts/Layout.astro';
 
 import { getCollection } from 'astro:content';
 
@@ -9,8 +9,13 @@ export async function getStaticPaths() {
     ...new Set(allPosts.map((post) => post.data.tags).flat()),
   ];
   return uniqueTags.map((tag) => {
-    const filteredPosts = allPosts.filter((post) =>
-      post.data.tags.includes(tag)
+    const filteredPosts = allPosts
+    .filter((post) => post.data.tags.includes(tag))
+    .filter((p) => p.data.draft !== true)
+    .sort(
+      (a, b) =>
+        new Date(b.data.date).valueOf() -
+        new Date(a.data.date).valueOf()
     );
     return {
       params: { tag },
@@ -22,22 +27,55 @@ export async function getStaticPaths() {
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 
-const title = "Tag Index";
+// const sortedPosts = posts
+//   .filter((p) => p.data.draft !== true)
+//   .sort(
+//     (a, b) =>
+//       new Date(b.data.date).valueOf() -
+//       new Date(a.data.date).valueOf()
+//   );
+
+
 ---
 
-<BaseLayout pageTitle={title}>
-  <div class="prose">
-    <h2>Posts tagged with <button class="btn btn-sm"># {tag}</button></h2>
-  </div>
-  <div class="py-4">
-      <ul>
-        {posts.map(post => (
-          <li class="flex gap-4">
-            <p>{post.data.pubDate}</p>
-            <a class="link link-primary" href={`/blog/${post.slug}`}>{post.data.title}</a>
-          </li>
-        ))}
+<Layout title="Tags | hokkaido-milk-tea">
+  <main>
+    <div class="prose prose-bubblegum">
+      <h1>Posts tagged with #{tag}</h1>
+    </div>
+    <div class="mt-8">
+      <ul class="pl-0">
+          {posts.map(post => {
+              const formattedDate = new Date(
+                  post.data.date
+              ).toLocaleDateString("en-us", {
+                  timeZone: 'UTC',
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+              });
+              return (
+                  <li class="flex flex-col justify-between md:flex-row md:gap-4">
+                      <div>
+                          <a class="no-underline" href={`/blog/${post.slug}`}>
+                              <span>{post.data.title}</span>
+                          </a>
+                      </div>
+                      <div class="text-text-muted text-sm italic pt-1">
+                          <time datetime={post.data.date.toString()}>
+                              {formattedDate}
+                          </time>
+                      </div>
+                  </li>
+              );
+          })}
       </ul>
     </div>
-    <a class="btn gap-2" href="/tags/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="m12 16l1.4-1.4l-1.6-1.6H16v-2h-4.2l1.6-1.6L12 8l-4 4l4 4Zm0 6q-2.075 0-3.9-.788t-3.175-2.137q-1.35-1.35-2.137-3.175T2 12q0-2.075.788-3.9t2.137-3.175q1.35-1.35 3.175-2.137T12 2q2.075 0 3.9.788t3.175 2.137q1.35 1.35 2.138 3.175T22 12q0 2.075-.788 3.9t-2.137 3.175q-1.35 1.35-3.175 2.138T12 22Zm0-2q3.35 0 5.675-2.325T20 12q0-3.35-2.325-5.675T12 4Q8.65 4 6.325 6.325T4 12q0 3.35 2.325 5.675T12 20Zm0-8Z"/></svg>All Tags</a>
-</BaseLayout>
+    <div class="mt-10 text-text-muted text-sm italic">
+      <a class="inline-flex items-center gap-2" href="/tags">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M6.78 1.97a.75.75 0 0 1 0 1.06L3.81 6h6.44A4.75 4.75 0 0 1 15 10.75v2.5a.75.75 0 0 1-1.5 0v-2.5a3.25 3.25 0 0 0-3.25-3.25H3.81l2.97 2.97a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L1.47 7.28a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z"></path></svg>
+          Back to Tags
+      </a>
+    </div>
+  </main>
+</Layout>

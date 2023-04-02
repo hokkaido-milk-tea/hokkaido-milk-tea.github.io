@@ -1,9 +1,57 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Layout from '../layouts/Layout.astro';
 ---
 
-<BaseLayout pageTitle="Welcome to Astro.">
-  <div class="prose">
-    <p>Welcome!</p>
-  </div>
-</BaseLayout>
+<Layout title="Home | hokkaido-milk-tea">
+	<main class="prose prose-bubblegum">
+		<h1 class="border-l-8 pl-4 py-2 border-l-lime-300">Welcome!</h1>
+
+		<p>I'm hokkaido-milk-tea and this is my blog.</p>
+		<p>
+			I have too many interests and jump between them too often.
+			Lately I've felt like I'm not making progress in any given hobby,
+			so I wanted to start documenting things here.
+		</p>
+		<p>
+			Find something in my <a href="/blog">blog</a> that interests you and read on!
+		</p>
+		<p>Cheers!</p>
+		<p>—hokkaido-milk-tea</p>
+
+		<div class="mt-8">
+			<h2 class="font-bold">Stuff I'm Working On Now</h2>
+			<ul>
+				<li>
+					Building this site with
+					<a href="https://astro.build/">Astro</a>,
+					<a href="https://tailwindcss.com/">Tailwind CSS</a>,
+					and the
+					<a href="https://github.com/flexdinesh/blogster">Blogster theme</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="mt-8">
+			<h2 class="font-bold">Stuff I'm Exploring</h2>
+			<ul>
+				<li>
+					Game dev in
+					<a href="https://godotengine.org/">Godot</a>
+					or
+					<a href="https://unity.com/">Unity</a>
+				</li>
+			</ul>
+		</div>
+
+		<div class="mt-8">
+			<h2 class="font-bold">Stuff I'm Looking Forward To</h2>
+			<ul>
+				<li>
+					<a href="https://www.animeboston.com/">Anime Boston</a>
+					from Apr 7-9
+				</li>
+				<li>A Japan trip that's in the works for Summer 2024</li>
+			</ul>
+		</div>
+	</main>
+</Layout>

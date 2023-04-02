@@ -2,12 +2,14 @@
 import { z, defineCollection } from 'astro:content';
 // 2. Define your collection(s)
 const blogCollection = defineCollection({
-    // type check frontmatter using schema
     schema: z.object({
-        title: z.string(),
-        tags: z.array(z.string()),
-        pubDate: z.string(),
-        draft: z.boolean(),
+        title: z.string({
+          required_error: "Required frontmatter missing: title",
+          invalid_type_error: "Frontmatter title must be a string",
+        }),
+        date: z.string(),
+        tags: z.array(z.string()).default([]),
+        draft: z.boolean().default(false),
     })
 });
 // 3. Export a single `collections` object to register your collection(s)

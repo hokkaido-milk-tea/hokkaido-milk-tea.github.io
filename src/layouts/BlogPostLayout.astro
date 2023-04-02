@@ -1,0 +1,49 @@
+---
+import Layout from "./Layout.astro";
+
+import type { CollectionEntry } from 'astro:content';
+
+const { frontmatter } = Astro.props;
+
+const formattedDate = new Date(frontmatter.date).toLocaleDateString("en-us", {
+    timeZone: "UTC",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+});
+---
+
+<Layout title={frontmatter.title}>
+    <article class="prose prose-bubblegum">
+        <h1 class="m-0 mb-[0.25em]">
+            <span class="
+                pl-6 relative block leading-[150%]
+                after:absolute after:content-[''] after:w-2 after:h-full after:top-0 after:left-0 after:bg-primary-green
+              ">
+              {frontmatter.title}
+            </span>
+        </h1>
+        <div class="md:flex md:flex-row gap-4">
+            <div class="text-text-muted text-sm italic pt-1">
+                <time datetime={frontmatter.date.toString()}>
+                    {formattedDate}
+                </time>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-1">
+                {frontmatter.tags.map((tag) => (
+                    <a class="inline-flex items-center gap-1 text-text-muted text-sm italic" href={`/tags/${tag}`}>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M6.368 1.01a.75.75 0 0 1 .623.859L6.57 4.5h3.98l.46-2.868a.75.75 0 0 1 1.48.237L12.07 4.5h2.18a.75.75 0 0 1 0 1.5h-2.42l-.64 4h2.56a.75.75 0 0 1 0 1.5h-2.8l-.46 2.869a.75.75 0 0 1-1.48-.237l.42-2.632H5.45l-.46 2.869a.75.75 0 0 1-1.48-.237l.42-2.632H1.75a.75.75 0 0 1 0-1.5h2.42l.64-4H2.25a.75.75 0 0 1 0-1.5h2.8l.46-2.868a.75.75 0 0 1 .858-.622ZM9.67 10l.64-4H6.33l-.64 4Z"></path></svg>
+                    {tag}
+                    </a>
+                ))}
+            </div>
+        </div>
+        <slot />
+        <div class="mt-10 text-text-muted text-sm italic">
+            <a class="inline-flex items-center gap-2" href="/blog">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill="currentColor" d="M6.78 1.97a.75.75 0 0 1 0 1.06L3.81 6h6.44A4.75 4.75 0 0 1 15 10.75v2.5a.75.75 0 0 1-1.5 0v-2.5a3.25 3.25 0 0 0-3.25-3.25H3.81l2.97 2.97a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L1.47 7.28a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z"></path></svg>
+                Back to Blog Posts
+            </a>
+        </div>
+    </article>
+</Layout>
